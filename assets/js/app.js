@@ -34,7 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const searchData = await searchResponse.json();
 
             if (searchData.error) {
-                alert(`Error: ${searchData.error}`);
+                let errMsg = `Error: ${searchData.error}`;
+                if (searchData.code) errMsg += `\nCode: ${searchData.code}`;
+                if (searchData.curl_error) errMsg += `\nCurl: ${searchData.curl_error}`;
+                if (searchData.response && searchData.response.message) errMsg += `\nMessage: ${searchData.response.message}`;
+                alert(errMsg);
                 loader.classList.add('d-none');
                 return;
             }

@@ -15,7 +15,7 @@ if (empty($query)) {
     exit();
 }
 
-$url = "https://api.balldontlie.io/v1/players?search=" . urlencode($query);
+$url = "https://api.balldontlie.io/v1/players?search=" . rawurlencode($query);
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
